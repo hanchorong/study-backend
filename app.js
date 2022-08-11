@@ -1,16 +1,22 @@
 const express = require("express");
 const app = express();
+app.set("view engine", "ejs");
 
 const port = 8000;
-// 8000 or 3000 or 8080
-
-app.get("/", (req, res) => {
-  // res.send("hello");
-
-  // 파일 자체를 가져오는 방법 : 아래처럼 절대경로도 넣어주어야함(__dirname)
-  res.sendFile(__dirname + "/test.html");
-});
-
 app.listen(port, () => {
   console.log("server open", port);
 });
+
+// main
+app.get("/", (req, res) => {
+  res.render("study");
+});
+//이동
+app.get("/study2", (req, res) => {
+  res.render("study2");
+});
+app.get("/study3", (req, res) => {
+  res.sendFile(__dirname + "/test.html");
+});
+// 이미지
+app.use("/static", express.static("static"));
